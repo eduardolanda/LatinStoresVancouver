@@ -5,7 +5,10 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 
-const mongo = mongoose.connect("DB_LINK", { useNewUrlParser: true });
+const mongo = mongoose.connect(
+  "mongodb+srv://eduardolanda:Mamarre@foodlatinapi-snuqq.mongodb.net/test?retryWrites=true",
+  { useNewUrlParser: true }
+);
 mongo
   .then(() => {
     console.log("connected");

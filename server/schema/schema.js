@@ -5,6 +5,7 @@ const Item = require("../models/item");
 const Review = require("../models/review");
 const Store = require("../models/store");
 const Type = require("../models/type");
+const mongoose = require("mongoose");
 
 const {
   GraphQLObjectType,
@@ -129,12 +130,13 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     itemName: {
-      type: ItemType,
+      type: new GraphQLList(ItemType),
       args: { name: { type: GraphQLString } },
       resolve(parent, args) {
         //Code to get data from db/other source
         // TEST IT
-        return Item.findOne({ name: args.name });
+        // return Item.find({ name: { $in: [`${args.name}`] } });
+        return Item.find({ name: args.name });
       }
     },
     store: {
